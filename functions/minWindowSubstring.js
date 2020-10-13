@@ -1,4 +1,4 @@
-function MinWindowSubstring(strArr) {
+function minWindowSubstring(strArr) {
 	const strWinMap = [...strArr[1]].reduce((result, char) => ((result[char] = (result[char] || 0) + 1), result), {});
 
 	let strMap = {};
@@ -22,4 +22,4 @@ function MinWindowSubstring(strArr) {
 	return strArr[0].slice(parseInt([...strIndexMap.keys()][0]), parseInt([...strIndexMap.keys()].slice(-1)[0]) + 1);
 }
 
-exports.MinWindowSubstring = MinWindowSubstring;
+exports.minWindowSubstring = minWindowSubstring;

@@ -1,0 +1,20 @@
+name: codacy-coverage-reporter
+
+on: ["push"]
+
+jobs:
+  codacy-coverage-reporter:
+    runs-on: ubuntu-latest
+    name: codacy-coverage-reporter
+    steps:
+      - uses: actions/checkout@master
+      - name: Install modules
+        run: yarn
+      - name: Run coverage
+        run: yarn coverage
+        continue-on-error: true
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ".coverage/lcov.info, .coverage/clover.xml"
